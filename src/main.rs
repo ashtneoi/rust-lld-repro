@@ -4,8 +4,6 @@
 
 use core::panic::PanicInfo;
 
-static STUFF: &[u8] = b"here's a string that we're going to read from";
-
 #[panic_handler]
 fn panic_handler(_: &PanicInfo) -> ! {
     loop { }
@@ -15,6 +13,8 @@ fn panic_handler(_: &PanicInfo) -> ! {
 fn abort() -> ! {
     loop { }
 }
+
+static STUFF: &[u8] = b"here's a string that we're going to read from";
 
 #[no_mangle]
 #[start]
@@ -32,7 +32,6 @@ global_asm!(
     r#"
         .section foo, "ax"
         bar:
-            li a0, 99
             ret
     "#;
 );

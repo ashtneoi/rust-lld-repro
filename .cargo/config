@@ -2,8 +2,6 @@
 #linker = "riscv64-linux-gnu-ld"
 rustflags = [
     "-C", "link-arg=-Tlink.ld",
-    #"-C", "link-arg=--no-gc-sections",
-    #"-C", "link-args=--no-undefined",
 ]
 runner = "riscv64-linux-gnu-readelf -lS"
 
