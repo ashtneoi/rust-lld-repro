@@ -4,21 +4,35 @@
 
 use core::panic::PanicInfo;
 
+static STUFF: &[u8] = b"here's a string that we're going to read from";
+
 #[panic_handler]
 fn panic_handler(_: &PanicInfo) -> ! {
     loop { }
 }
 
 #[no_mangle]
+fn abort() -> ! {
+    loop { }
+}
+
+#[no_mangle]
 #[start]
-fn _start(_argc: isize, _argv: *const *const u8) -> isize {
-    0
+fn _start(argc: isize, _argv: *const *const u8) -> isize {
+    unsafe {
+        bar(STUFF[argc as usize])
+    }
+}
+
+extern "C" {
+    fn bar(sth: u8) -> isize;
 }
 
 global_asm!(
     r#"
-        .section foo
+        .section foo, "ax"
         bar:
-            j bar
+            li a0, 99
+            ret
     "#;
 );
