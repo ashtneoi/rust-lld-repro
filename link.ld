@@ -5,6 +5,8 @@ MEMORY {
 ENTRY(_start);
 
 SECTIONS {
-    /*. = 0x70000000;*/
+    . = 0x70000000;
     foo 0x70000000 : { *(foo) } >mem
+    . = 0x70001000;
+    bar 0x70001000 : { *(bar) } >mem
 }
