@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(lang_items)]
 #![feature(global_asm)]
 #![feature(start)]
 
@@ -23,6 +24,9 @@ fn _start(argc: isize, _argv: *const *const u8) -> isize {
         foo_dummy(bar_dummy(STUFF[argc as usize])) as isize
     }
 }
+
+#[lang = "eh_personality"]
+fn personality() { }
 
 extern "C" {
     fn foo_dummy(sth: u8) -> u8;

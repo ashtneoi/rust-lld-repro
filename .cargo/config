@@ -1,3 +1,11 @@
+[target.x86_64-unknown-linux-gnu]
+linker = "./rust-lld"
+rustflags = [
+    "-C", "link-arg=-Tlink.ld",
+    "-C", "default-linker-libraries=no",
+]
+runner = "riscv64-linux-gnu-readelf -lS"
+
 [target.riscv64gc-unknown-none-elf]
 #linker = "riscv64-linux-gnu-ld"
 rustflags = [
@@ -6,4 +14,4 @@ rustflags = [
 runner = "riscv64-linux-gnu-readelf -lS"
 
 [build]
-target = "riscv64gc-unknown-none-elf"
+#target = "riscv64gc-unknown-none-elf"
