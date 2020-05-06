@@ -2,7 +2,6 @@
 linker = "./rust-lld"
 rustflags = [
     "-C", "link-arg=-Tlink.ld",
-    "-C", "default-linker-libraries=no",
 ]
 runner = "riscv64-linux-gnu-readelf -lS"
 
